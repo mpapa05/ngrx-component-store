@@ -1,0 +1,8 @@
+<ng-container *ngIf="movies$ | async as movies; else loading">
+    <div *ngFor="let movie of movies">
+      <h1>{{ movie.title }}</h1>
+    </div>
+  </ng-container>
+  <ng-template #loading>
+    <p>Loading...</p>
+  </ng-template>
