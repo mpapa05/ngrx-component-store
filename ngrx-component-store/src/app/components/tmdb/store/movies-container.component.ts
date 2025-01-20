@@ -4,6 +4,7 @@ import { MovieState, MovieStore } from './movie.store';
 import { CommonModule } from '@angular/common';
 import { MoviesComponent } from '../movies/movies.component';
 import { Movie } from '../models/movie.model';
+import { map } from 'rxjs';
 
 @Component({
     selector: 'component-store-movies-container',
@@ -16,19 +17,10 @@ import { Movie } from '../models/movie.model';
 export class MoviesContainerComponent implements OnInit {
     constructor(
         private _tmdbService: TmdbService, 
-        private _movieStore: MovieStore
+        public _movieStore: MovieStore
     ) { }
 
     ngOnInit() {
-        this._tmdbService.getMovies().subscribe({
-            next: (movieState: MovieState) => {
-                const movies = movieState.results;
-                this._movieStore.loadMovies(movies);
-                console.log(movies);
-            },
-            error: (error: any) => {
-                console.log(error);
-            }
-        });
+        
     }
 }

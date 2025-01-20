@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { MovieState } from '../../components/tmdb/store/movie.store';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,20 @@ export class TmdbService {
 
   constructor(private http: HttpClient) { }
 
-  getMovies(): Observable<any> {
+  getMovies(page: string = '1'): Observable<MovieState> {
+    // let pageNumber = page ? page : '1';
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.bearerToken}`,
       'Accept': 'application/json'
     });
-    return this.http.get(`${this.baseUrl}/discover/movie`, { headers });
+    return this.http.get<MovieState>(`${this.baseUrl}/discover/movie?page=${page}`, { headers });
   }
 
-  getTVShows(): Observable<any> {
+  getTVShows(): Observable<MovieState> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.bearerToken}`,
       'Accept': 'application/json'
     });
-    return this.http.get(`${this.baseUrl}/discover/tv`, { headers });
+    return this.http.get<MovieState>(`${this.baseUrl}/discover/tv`, { headers });
   }
 }

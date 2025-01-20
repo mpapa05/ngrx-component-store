@@ -1,1 +1,13 @@
-<p>movie works!</p>
+<mat-card class="movie-card bg-light">
+    <mat-card-header>
+        <mat-card-title>{{ movie.original_title }}</mat-card-title>
+        <mat-card-subtitle>{{ movie.release_date }}</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image [src]="movie.poster_path" alt={{ movie.original_title }}> -->
+    <mat-card-content>
+        <p>{{ movie.overview }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>Add to favorites</button>
+    </mat-card-actions>
+</mat-card>

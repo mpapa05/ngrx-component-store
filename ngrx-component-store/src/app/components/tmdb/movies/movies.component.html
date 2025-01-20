@@ -1,8 +1,12 @@
 <ng-container *ngIf="movies$ | async as movies; else loading">
     <div *ngFor="let movie of movies">
-      <h1>{{ movie.title }}</h1>
+      <app-movie [movie]="movie"></app-movie>
     </div>
-  </ng-container>
+    <!-- <div *ngIf="currentPage$" class="pagination"> -->
+      <button mat-raised-button (click)="previous()">Previous</button>
+      <button mat-raised-button (click)="next()">Next</button>
+    <!-- </div> -->
+</ng-container>
   <ng-template #loading>
     <p>Loading...</p>
   </ng-template>
